@@ -1,0 +1,36 @@
+extends ../layout.jade
+block contenido
+	h2 Selecciona la op a editar o eliminar
+	div(class='col-md-11 container big-top-space')
+		br
+		table
+			tr
+				th id
+				th OP
+				th TR
+				th REF
+				th UDS
+				th MOD
+				th F_PROGRAM
+				th EXTENDIDO
+				th BORRAR
+			tr
+			for da in dat
+				tr
+					th=da._id
+					th=da.op
+					th=da.trazo
+					th=da.ref
+					th=da.uds
+					th=da.modu 
+					th
+						form(action='/f_prog/#{da._id}' method='POST')
+							input(type='date' name='f_prog' placeholder='yyyy/mm/dd' id='f_prog' )
+							input(type='submit' value='Actualizar' class='btn btn-info')
+					th
+						form(action='/f_ext/#{da._id}' method='POST')
+							input(type='date' name='f_ext' placeholder='yyyy/mm/dd' id='f_ext' )
+							input(type='submit' value='Actualizar' class='btn btn-info')
+					th
+						a(href='/del/#{da._id}') Eliminar
+				tr

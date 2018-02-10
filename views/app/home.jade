@@ -1,0 +1,32 @@
+extends ../layout.jade
+block contenido
+  div(class='col-md-12 container big-top-space')
+    table
+        tr
+          th(class='th1') OP
+          th(class='th1') TR
+          th(class='th1') UDS
+          th(class='th1') MO
+          th(class='th1') F_PROGRA   
+          th(class='th1') TRAZO
+          th(class='th1') EXTENDIDO
+          th(class='th1') CORTE
+          th(class='th1') TIQUETEO
+          th(class='th1') PREPARACION
+        tr
+        for dato in datos
+          tr
+            if dato.extendido == undefined
+              th=dato.op
+            else
+              th(class='th')=dato.op
+            th=dato.trazo
+            th=dato.uds
+            th=dato.modu 
+            th=dato.fecha.toDateString()
+            th=dato.trazo1
+            th=dato.extendido
+            th=dato.corte
+            th=dato.tiqueteo
+            th=dato.preparacion
+          tr

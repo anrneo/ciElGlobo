@@ -1,0 +1,30 @@
+extends ../newlayout.jade
+block contenido
+  div(class='col-md-12 container big-top-space')
+    h3  
+    table
+        tr
+          th OP
+          th TR
+          th UDS
+          th MO
+          th F_PROGRA   
+          th TRAZO
+          th EXTENDIDO
+          th CORTE
+          th TIQUETEO
+          th PREPARACION
+        tr
+        for m in m1
+          tr
+            th=m.op
+            th=m.trazo
+            th=m.uds
+            th=m.modu 
+            th=m.fecha.toDateString()
+            th=m.trazo1
+            th=m.extendido
+            th=m.corte
+            th=m.tiqueteo
+            th=m.preparacion
+          tr
