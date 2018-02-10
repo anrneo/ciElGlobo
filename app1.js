@@ -25,7 +25,7 @@ app.use(cookieSession({
 }))
 app.set('view engine', 'jade')
 app.get('/', function(req, res){
-	Corte.find({entregado: undefined}).sort({fecha:1})
+	Corte.find({'entregado': undefined}).sort({fecha:1})
     .exec(function(err,datos){
 	  if(err) console.log(err);
 	  res.render('app1/home1',{datos:datos})
@@ -74,7 +74,7 @@ app.get('/m13', function(req, res){
 		})
 	})
 app.post('/buscar', function(req, res){
-	Corte.find({op:req.body.buscar}).sort({fecha:-1})
+	Corte.find({'op':req.body.buscar}).sort({fecha:-1})
 	.exec((err,busq)=>{
 		if(err) console.log(err);
 		res.render('app1/buscar1',{busq:busq})

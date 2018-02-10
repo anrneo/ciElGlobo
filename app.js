@@ -5,7 +5,7 @@ var Corte = require('./models/user')
 var cookieSession = require('cookie-session')
 var methodOverride = require('method-override')
 var http = require('http')
-
+var router = express.Router()
 var app = express()
 var server = http.Server(app)
 
@@ -24,8 +24,9 @@ app.use(cookieSession({
 	keys: ['llave-1','llave-2']
 }))
 app.set('view engine', 'jade')
+
 app.get('/', function(req, res){
-	Corte.find({entregado: undefined}).sort({fecha:1}).exec(function(err,datos){
+	Corte.find({'entregado': undefined}).sort({extendido:-1}).exec(function(err,datos){
 	  if(err) console.log(err);
 	  res.render('app/home',{datos:datos})
 	})
@@ -84,25 +85,45 @@ app.get('/m13', function(req, res){
 	
 
 app.post('/buscar', function(req, res){
-	Corte.find({op:req.body.buscar}).sort({fecha:-1})
+	Corte.find({'op':req.body.buscar}).sort({fecha:-1})
 	.exec((err,busq)=>{
 		if(err) console.log(err);
 		res.render('app/buscar',{busq:busq})
 	})
 })
 app.post('/borrar', function(req, res){
-	Corte.find({op:req.body.borrar}).sort({fecha:-1})
+	Corte.find({'op':req.body.borrar}).sort({fecha:-1})
 	.exec((err,dat)=>{
 		if(err) console.log(err);
 		res.render('app/borrar',{dat:dat})
 	})
 })
-app.get('/delete', function(req, res){
-	Corte.remove({_id:ObjectId(req.body.id)}).exec()
-	  res.render('signup')
-	})
+app.post('/f_prog/:id', function(req, res){
+	Corte.update({_id: req.params.id}, 
+	{ $set: { 'fecha': req.body.f_prog } }).exec(),
+	res.render('signup')
+		})
+app.post('/f_ext/:id', function(req, res){
+			Corte.update({_id: req.params.id}, 
+			{ $set: { 'extendido': req.body.f_ext } }).exec(),
+			res.render('signup')
+				})
+
+app.get('/del/:id', (req, res)=>{
+	Corte.findOneAndRemove({_id: req.params.id},function(err){
+		  if(!err){
+			res.render('signup')
+		  }else{
+			console.log(err)
+		  }
+		})
+	  })
 
 app.post('/users', function(req, res){
+	/*Corte.find({op:req.body.op,trazo:req.body.trazo}).exec(), function(err){
+	if(err ){
+		res.send('Hubo un error al guardar el usuario')}
+	else{*/
 	var corte=new Corte({op: req.body.op,
 						trazo: req.body.trazo,
 						ref: req.body.ref,
@@ -113,10 +134,8 @@ app.post('/users', function(req, res){
 corte.save().then(function(us){
 	console.log(corte)
 	res.render('signup')
-	},function(err){
-	console.log(String(err))
-	res.send('Hubo un error al guardar el usuario')
-	})
+	}
+)
 })
 
 app.post('/trazo', function(req, res){
