@@ -7,32 +7,32 @@ block contenido
 				label(for='op') 
 					strong OP
 				input(type='text' name='op' placeholder='op' id='op' 
-				class='form-control' autofocus)
+				class='form-control' required='true' autofocus)
 			div(class='form-group')
 				label(for='op') 
 					strong TRAZO
 				input(type='text' name='trazo' placeholder='Trazo' 
-				id='password' class='form-control')
+				id='password' class='form-control' required='true')
 			div(class='form-group')
 				label(for='ref') 
 					strong REFERENCIA
 				input(type='text' name='ref' placeholder='Referencia' 
-				id='password_confirmation' class='form-control')
+				id='password_confirmation' class='form-control' required='true')
 			div(class='form-group')
 				label(for='unidades') 
 					strong UNIDADES
 				input(type='text' name='uds' placeholder='Unidades' 
-				id='uds' class='form-control')
+				id='uds' class='form-control' required='true')
 			div(class='form-group')
 				label(for='modu') 
 					strong MODULO
 				input(type='text' name='modu' placeholder='Modulo' 
-				id='modu' class='form-control')
+				id='modu' class='form-control' required='true')
 			div(class='form-group')
 				label(for='fecha') 
 					strong FECHA DE PROGRAMACION
 				input(type='date' name='fecha' placeholder='dd/mm/yyyy' 
-				id='fecha' class='form-control')
+				id='fecha' class='form-control' required='true')
 			div(class='row top-space')
 				div(class='col-xs-12 col-sm-6')
 					input(type='submit' value='Crear OP' class='btn btn-info')
@@ -45,7 +45,7 @@ block contenido
 					label(for='tiqueteo') 
 						strong EDITAR - BORRAR OP
 					input(type='text' name='borrar' placeholder='op a borrar' 
-				id='borrar' class='form-control')
+				id='borrar' class='form-control' required='true')
 				div(class='row top-space')
 					div(class='col-xs-12 col-sm-6')
 						input(type='submit' value='borrar' class='btn btn-info')

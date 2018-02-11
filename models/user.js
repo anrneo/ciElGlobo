@@ -16,7 +16,7 @@ var user_schema = new Schema({
   ref: {type:String},
   uds: {type:Number},
   modu: {type:Number},
-  fecha: {type: Date, default:f.toDateString() },
+  fecha: {type: Date,  },
   trazo1:{type:String},
   extendido: {type:String},
   corte: {type:String},

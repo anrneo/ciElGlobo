@@ -83,7 +83,9 @@ tr:nth-child(even) {
   background-color: #3dd169;
 }
 h2 {
-  text-align: center;
+  text-align: center}
+h4 {
+    text-align: center;
 }
 .th {
   padding-top: 1px;

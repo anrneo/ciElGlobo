@@ -26,11 +26,13 @@ app.use(cookieSession({
 app.set('view engine', 'jade')
 
 app.get('/', function(req, res){
-	Corte.find({'entregado': undefined}).sort({extendido:-1}).exec(function(err,datos){
+	Corte.find({'entregado': undefined}).sort({'extendido':-1}).exec(function(err,datos){
 	  if(err) console.log(err);
-	  res.render('app/home',{datos:datos})
+	  res.render('app/home',{
+		  datos:datos})
 	})
 })
+
 
 app.get('/new', function(req, res){
 	res.render('new')
@@ -140,36 +142,58 @@ corte.save().then(function(us){
 
 app.post('/trazo', function(req, res){
 	var f = new Date()
-	Corte.update({ op:req.body.trazo1, trazo:req.body.t_tr}, 
-	{ $set: { trazo1: f.toLocaleString() } }).exec(),
-	res.render('new')
-		})
+	Corte.findOneAndUpdate({ op:req.body.trazo1, trazo:req.body.t_tr}, 
+	{ $set: { trazo1: f.toLocaleString() } }).exec(function(err,ok){
+		if(ok==null){
+			res.render('app/info',{nom:'Aux. de telas'})}
+		else{
+			res.render('new')}
+	})})
 app.post('/extendido', function(req, res){
 	var f = new Date()
-	Corte.update({ op:req.body.extendido, trazo:req.body.t_ex}, 
-	{ $set: { extendido: f.toLocaleString() } }).exec(),
-	res.render('new')
-		})
+	Corte.findOneAndUpdate({ op:req.body.extendido, trazo:req.body.t_ex}, 
+	{ $set: { extendido: f.toLocaleString() } }).exec(function(err,ok){
+		if(ok==null){
+			res.render('app/info',{nom:'Extendedor'})}
+		else{
+			res.render('new')}
+	})})
 app.post('/corte', function(req, res){
 	var f = new Date()
-	Corte.update({ op:req.body.corte,trazo:req.body.t_co}, { $set: { corte: f.toLocaleString() }}).exec(),
-	res.render('new')
-		})
+	Corte.findOneAndUpdate({ op:req.body.corte,trazo:req.body.t_co}, 
+		{ $set: { corte: f.toLocaleString() }}).exec(function(err,ok){
+			if(ok==null){
+				res.render('app/info',{nom:'Cortador'})}
+			else{
+				res.render('new')}
+		})})
 app.post('/tiqueteo', function(req, res){
 	var f = new Date()
-	Corte.update({ op:req.body.tiqueteo, trazo:req.body.t_ti }, { $set: { tiqueteo: f.toLocaleString() }}).exec(),
-	res.render('new')
-		})
+	Corte.findOneAndUpdate({ op:req.body.tiqueteo, trazo:req.body.t_ti },
+		 { $set: { tiqueteo: f.toLocaleString() }}).exec(function(err,ok){
+			if(ok==null){
+				res.render('app/info',{nom:'Tiqueteador'})}
+			else{
+				res.render('new')}
+		})})
 app.post('/preparacion', function(req, res){
 	var f = new Date()
-	Corte.update({ op:req.body.preparacion, trazo:req.body.t_pr }, { $set: { preparacion: f.toLocaleString() }}).exec(),
-	res.render('new')
-		})
+	Corte.findOneAndUpdate({ op:req.body.preparacion, trazo:req.body.t_pr }, 
+		{ $set: { preparacion: f.toLocaleString() }}).exec(function(err,ok){
+			if(ok==null){
+				res.render('app/info',{nom:'Preparador'})}
+			else{
+				res.render('new')}
+		})})
 app.post('/entrega', function(req, res){
 	var f = new Date()
-	Corte.update({ op:req.body.entrega, trazo:req.body.t_in }, { $set: { entregado: f.toLocaleString() }}).exec(),
-	res.render('new')
-		})
+	Corte.findOneAndUpdate({ op:req.body.entrega, trazo:req.body.t_in }, 
+		{ $set: { entregado: f.toLocaleString() }}).exec(function(err,ok){
+			if(ok==null){
+				res.render('app/info',{nom:'Integrador'})}
+			else{
+				res.render('new')}
+		})})
 		
 //app.use('/app', session_middleware)
 server.listen(9000)
