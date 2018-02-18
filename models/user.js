@@ -9,7 +9,7 @@ var modu_pos_val=['M3', 'M4', 'M7', 'SP', 'M10']
   },
   message:'Las contraseñas no son iguales'
 }*/
-var f = new Date()
+
 var user_schema = new Schema({
   op: {type:String},
   trazo: {type:String},
