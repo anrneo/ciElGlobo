@@ -15,8 +15,7 @@ app.use(methodOverride('_method'))
 app.set('view engine', 'jade')
 
 app.get('/', function(req, res){
-
-Corte.find({entregado: undefined}).sort({extendido:1}).then(function(datos){
+Corte.find({entregado: undefined}).sort({extendido:-1}).then(function(datos){
 	Corte.aggregate([{$match:{entregado:undefined, extendido:undefined}},
 	{$group:{_id:0, suma:{$sum:'$uds'}}}])
 	.then(function(pr){
@@ -29,16 +28,16 @@ Corte.find({entregado: undefined}).sort({extendido:1}).then(function(datos){
 			else{var tot=to[0].suma}
 			var cor=tot-pro
 			res.render('app/home',{datos,pro,cor,tot})
-	  
+			
 			})
 		})
 	})
 })
-	
 
 app.get('/new', function(req, res){
 	res.render('new')
 })
+
 app.get('/signup', function(req, res){
 		res.render('signup')
 	})
@@ -61,6 +60,7 @@ app.get('/m3', function(req, res){
 		})
 	})
 })
+
 app.get('/m4', function(req, res){
 	Corte.find({'modu':4,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:4}},
@@ -79,6 +79,7 @@ app.get('/m4', function(req, res){
 		})
 	})
 })
+
 app.get('/m7', function(req, res){
 	Corte.find({'modu':7,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:7}},
@@ -97,6 +98,7 @@ app.get('/m7', function(req, res){
 		})
 	})
 })
+
 app.get('/m10', function(req, res){
 	Corte.find({'modu':10,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:10}},
@@ -115,6 +117,7 @@ app.get('/m10', function(req, res){
 		})
 	})
 })
+
 app.get('/m11', function(req, res){
 	Corte.find({'modu':11,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:11}},
@@ -133,6 +136,7 @@ app.get('/m11', function(req, res){
 		})
 	})
 })
+
 app.get('/m13', function(req, res){
 	Corte.find({'modu':13,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:13}},
@@ -152,7 +156,24 @@ app.get('/m13', function(req, res){
 	})
 })
 
-	
+app.get('/est', function(req, res){
+	Corte.find({est:1,estampado:undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{est:1, extendido:undefined, estampado:undefined}},
+		{$group:{_id:0, suma:{$sum:'$uds'}}}])
+		.then(function(pr){
+			if (pr==0){var pro =0}
+			else{var pro=pr[0].suma}
+			Corte.aggregate([{$match:{est:1,estampado:undefined}},
+			{$group:{_id:0, suma:{$sum:'$uds' } }}])
+			.then(function(to){
+				if(to==0){var tot=0}
+				else{var tot=to[0].suma}
+				var cor=tot-pro
+				res.render('app/est',{m1,pro,cor,tot})
+			})
+		})
+	})
+})
 
 app.post('/buscar', function(req, res){
 	Corte.find({'op':req.body.buscar}).sort({fecha:-1})
@@ -161,6 +182,7 @@ app.post('/buscar', function(req, res){
 		res.render('app/buscar',{busq:busq})
 	})
 })
+
 app.post('/borrar', function(req, res){
 	Corte.find({'op':req.body.borrar}).sort({fecha:-1})
 	.exec((err,dat)=>{
@@ -168,18 +190,20 @@ app.post('/borrar', function(req, res){
 		res.render('app/borrar',{dat:dat})
 	})
 })
+
 app.post('/f_prog/:id', function(req, res){
 	var f = new Date(req.body.f_prog)
 	Corte.update({_id: req.params.id}, 
 	{ $set: { 'fecha': f.toDateString() } }).exec(),
 	res.render('signup')
-		})
+})
+
 app.post('/f_ext/:id', function(req, res){
 	var f = new Date(req.body.f_ext)
-			Corte.update({_id: req.params.id}, 
-			{ $set: { 'extendido': f.toLocaleString() } }).exec(),
-			res.render('signup')
-				})
+	Corte.update({_id: req.params.id}, 
+	{ $set: { 'extendido': f.toLocaleString() } }).exec(),
+		res.render('signup')
+})
 
 app.get('/del/:id', (req, res)=>{
 	Corte.findOneAndRemove({_id: req.params.id},function(err){
@@ -192,22 +216,17 @@ app.get('/del/:id', (req, res)=>{
 	  })
 
 app.post('/users', function(req, res){
-	/*Corte.find({op:req.body.op,trazo:req.body.trazo}).exec(), function(err){
-	if(err ){
-		res.send('Hubo un error al guardar el usuario')}
-	else{*/
 	var corte=new Corte({op: req.body.op,
 						trazo: req.body.trazo,
 						ref: req.body.ref,
 						uds: req.body.uds,
 						modu: req.body.modu,
+						est: req.body.est,
 						fecha: req.body.fecha
 						})
-corte.save().then(function(us){
-	console.log(corte)
+	corte.save().then(function(us){
 	res.render('signup')
-	}
-)
+	})
 })
 
 app.post('/trazo', function(req, res){
@@ -218,7 +237,9 @@ app.post('/trazo', function(req, res){
 			res.render('app/info',{nom:'Aux. de telas'})}
 		else{
 			res.render('new')}
-	})})
+	})
+})
+
 app.post('/extendido', function(req, res){
 	var f = new Date()
 	Corte.findOneAndUpdate({ op:req.body.extendido, trazo:req.body.t_ex}, 
@@ -227,7 +248,9 @@ app.post('/extendido', function(req, res){
 			res.render('app/info',{nom:'Extendedor'})}
 		else{
 			res.render('new')}
-	})})
+	})
+})
+
 app.post('/corte', function(req, res){
 	var f = new Date()
 	Corte.findOneAndUpdate({ op:req.body.corte,trazo:req.body.t_co}, 
@@ -236,7 +259,9 @@ app.post('/corte', function(req, res){
 				res.render('app/info',{nom:'Cortador'})}
 			else{
 				res.render('new')}
-		})})
+	})
+})
+
 app.post('/tiqueteo', function(req, res){
 	var f = new Date()
 	Corte.findOneAndUpdate({ op:req.body.tiqueteo, trazo:req.body.t_ti },
@@ -245,7 +270,9 @@ app.post('/tiqueteo', function(req, res){
 				res.render('app/info',{nom:'Tiqueteador'})}
 			else{
 				res.render('new')}
-		})})
+		})
+})
+
 app.post('/preparacion', function(req, res){
 	var f = new Date()
 	Corte.findOneAndUpdate({ op:req.body.preparacion, trazo:req.body.t_pr }, 
@@ -254,7 +281,9 @@ app.post('/preparacion', function(req, res){
 				res.render('app/info',{nom:'Preparador'})}
 			else{
 				res.render('new')}
-		})})
+		})
+})
+
 app.post('/entrega', function(req, res){
 	var f = new Date()
 	Corte.findOneAndUpdate({ op:req.body.entrega, trazo:req.body.t_in }, 
@@ -263,7 +292,19 @@ app.post('/entrega', function(req, res){
 				res.render('app/info',{nom:'Integrador'})}
 			else{
 				res.render('new')}
-		})})
+		})
+})
+
+app.post('/estampado', function(req, res){
+	var f = new Date()
+	Corte.findOneAndUpdate({ op:req.body.estampado, trazo:req.body.t_es }, 
+		{ $set: { estampado: f.toLocaleString() }}).exec(function(err,ok){
+			if(ok==null){
+				res.render('app/info',{nom:'Integrador'})}
+			else{
+				res.render('new')}
+		})
+})
 
 server.listen(9000)
 console.log('conectado en servidor 9000')

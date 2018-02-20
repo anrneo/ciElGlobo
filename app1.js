@@ -14,7 +14,7 @@ app.use(methodOverride('_method'))
 app.set('view engine', 'jade')
 
 app.get('/', function(req, res){
-	Corte.find({entregado: undefined}).sort({extendido:1}).then(function(datos){
+	Corte.find({entregado: undefined}).sort({extendido:-1}).then(function(datos){
 		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
@@ -140,6 +140,27 @@ app.get('/m13', function(req, res){
 		})
 	})
 })
+
+app.get('/est', function(req, res){
+	Corte.find({est:1,estampado:undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{est:1, extendido:undefined, estampado:undefined}},
+		{$group:{_id:0, suma:{$sum:'$uds'}}}])
+		.then(function(pr){
+			if (pr==0){var pro =0}
+			else{var pro=pr[0].suma}
+			Corte.aggregate([{$match:{est:1,estampado:undefined}},
+			{$group:{_id:0, suma:{$sum:'$uds' } }}])
+			.then(function(to){
+				if(to==0){var tot=0}
+				else{var tot=to[0].suma}
+				var cor=tot-pro
+				res.render('app1/est1',{m1,pro,cor,tot})
+			})
+		})
+	})
+})
+
+
 app.post('/buscar', function(req, res){
 	Corte.find({'op':req.body.buscar}).sort({fecha:-1})
 	.exec((err,busq)=>{

@@ -26,7 +26,10 @@ block contenido
             th=dato.modu 
             th=dato.fecha.toDateString()
             th=dato.trazo1
-            th=dato.extendido
+            if dato.extendido == undefined
+              th=dato.extendido
+            else
+              th=dato.extendido.toLocaleString()
             th=dato.corte
             th=dato.tiqueteo
             th=dato.preparacion

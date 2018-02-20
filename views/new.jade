@@ -1,6 +1,6 @@
 extends ./layout.jade
 block contenido
-	h2(class='text-align-center') Por favor ingresa la OP en el proceso correspondiente
+	h2(class='text-align-center') Por favor ingresa la OP y TRAZO en el proceso correspondiente
 	div(class='col-md-4  container big-top-space')
 		form(action='/trazo' method='POST')
 			div(class='form-group')
@@ -47,6 +47,15 @@ block contenido
 					input(type='text' name='t_pr' placeholder='Trazo' id='t_pr' 
 				class='form-control' required='true')
 				input(type='submit' value='Preparacion' class='btn btn-info')
+		form(action='/estampado' method='POST')
+			div(class='form-group')
+				label(for='estampado') 
+					strong ESTAMPADO
+					input(type='text' name='estampado' placeholder='OP' 
+				id='estampado' class='form-control' required='true')
+					input(type='text' name='t_es' placeholder='Trazo' id='t_es' 
+				class='form-control' required='true')
+				input(type='submit' value='estampado' class='btn btn-info')
 		form(action='/entrega' method='POST')
 			div(class='form-group')
 				label(for='entrega') 
