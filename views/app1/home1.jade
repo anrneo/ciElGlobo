@@ -24,9 +24,12 @@ block contenido
             th=dato.trazo
             th=dato.uds
             th=dato.modu 
-            th=dato.fecha.toDateString(9)
+            th=dato.fecha.toDateString()
             th=dato.trazo1
-            th=dato.extendido
+            if dato.etendido==undefiend
+              th=dato.extendido
+            else
+              th=dato.extendido.toLocaleString()
             th=dato.corte
             th=dato.tiqueteo
             th=dato.preparacion

@@ -1,0 +1,5 @@
+extends ../layout.jade
+block contenido 
+    div(class='img-container')
+     h2 Cliente: #{img.cliente} --- Referencia: #{img.referencia}
+     img(src='/imagenes/#{img._id}.#{img.extension}', class='main-img')

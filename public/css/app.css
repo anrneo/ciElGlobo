@@ -2,7 +2,7 @@
   margin-right: 5em
 }
 .remove-float{
-  float: none
+  float: inline-block
 }
 .top-space{
   margin-top: 1.5em
@@ -11,7 +11,7 @@
   margin-top: 10px
 }
 .large-padding{
-  padding: 10px 10px
+  padding: 12px 15px
 }
 .black{
   background-color: tomato
@@ -20,9 +20,9 @@
   color: white
 }
 .img-container{
-  width: 700px;
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto
+  margin: auto auto
 }
 .img-container h1,.img-container h2{
   padding: 15px;
@@ -38,11 +38,11 @@ img{
 }
 nav li{
   display: inline-block;
-  margin-right: .75em;
-  font-size: 1.16em
+  margin-right: .5em;
+  font-size: 1.2em
 }
 nav{
-  text-align: right
+  text-align: center
 }
 nav li a{
   color: white
@@ -59,18 +59,12 @@ nav li a:hover{
 .tr:nth-of-type(odd){
   background-color: rgb(165, 202, 233)
 }
-form.link{
-  display: inline-block
-}
-form.link input[type='submit']{
-  background-color: transparent;
-  border: none;
-  color: rgb(250, 50, 50);
-}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  
 }
 
 td, th {
@@ -101,3 +95,19 @@ h4 {
   background-color: rgb(157, 214, 83);
   color: black;
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: 20% 30% 30% 20%;
+  grid-gap: 10px;
+  background-color: #4CAF50 !important;
+  padding: 22px;
+  text-align: center;
+  font-size: 25px;
+}
+.btn{
+  width: 130px;
+  background-color: #2196F3
+}
+.div_grid{
+  padding: 2px 0;
+  }

@@ -1,13 +1,18 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var Corte = require('./models/user')
+var Imagen = require('./models/imagenes')
 var methodOverride = require('method-override')
 var http = require('http')
+var fs = require('fs')
+var upload_image = require('express-form-data')
 var router = express.Router()
 var app = express()
 var server = http.Server(app)
 
+app.use(upload_image.parse({keepExtensions:true}))
 app.use('/public', express.static('public'))
+app.use('/imagenes', express.static('imagenes'))
 app.use(bodyParser.json()) //para peticiones application json
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
@@ -36,6 +41,34 @@ Corte.find({entregado: undefined}).sort({extendido:-1}).then(function(datos){
 
 app.get('/new', function(req, res){
 	res.render('new')
+})
+app.get('/mini', function(req, res){
+	Imagen.find({}).sort({referencia:1})
+    .then(function(ref){
+      res.render('app/mini',{ref})
+      })
+})
+app.post('/imagenes', function(req,res){
+	var extension=req.files.archivo.name.split('.').pop()
+        var data = {
+         referencia: req.body.referencia,
+        extension: extension,
+        cliente: req.body.cliente}
+				
+        var imagen = new Imagen(data);
+        imagen.save().then(function(us){
+          fs.rename(req.files.archivo.path, 'imagenes/'+imagen._id+'.'+extension,(err)=>{})
+			Imagen.find().sort({referencia:1})
+			.then(function(ref){
+		  	res.render('app/mini',{ref})
+		  })
+		})
+})
+app.get('/ref/:id', function(req, res){
+	Imagen.findById(req.params.id).then(function(img){
+		console.log(img)
+		res.render('app/imgmini',{img})
+})
 })
 
 app.get('/signup', function(req, res){

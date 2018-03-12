@@ -12,7 +12,7 @@ var user_schema = new Schema({
   fecha: {type: Date },
   fecha1:{type:Number},
   trazo1:{type:String},
-  extendido: {type:Date},
+  extendido: {type: String},
   corte: {type:String},
   tiqueteo: {type:String},
   preparacion: {type:String},

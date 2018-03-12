@@ -3,21 +3,22 @@ html(lang='es')
 	head
 		title Control Corte CI ElGlobo
 		meta(charset='utf-8' 	)
-		meta(meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
 		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
 		link(href='/public/css/app.css' rel='stylesheet')
 	body
 		nav(class='large-padding black white-text')
 			
 			ul
-				li Created by: Carlos Villa®
-				
+				li
+					a Created by: Carlos Villa®
 				li
 					form(action='/buscar' method='POST')
 						input(type='text' name='buscar' placeholder='Buscar OP' 
 				id='buscar' class='form-control')
 				li
-					a(href='/') Estado de Corte
+					a(href='/') Corte
 				li
 					a(href="/m3") M3
 				li
@@ -36,4 +37,6 @@ html(lang='es')
 					a(href='/new') Cambio de subproceso
 				li
 					a(href='/signup') Ingresar Datos
-		block contenido
+				li
+					a(href='/mini') Mini
+	block contenido

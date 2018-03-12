@@ -1,68 +1,97 @@
 extends ./layout.jade
 block contenido
+	br
 	h2(class='text-align-center') Por favor ingresa la OP y TRAZO en el proceso correspondiente
-	div(class='col-md-4  container big-top-space')
+	br
+	div(class='container big-top-space')
 		form(action='/trazo' method='POST')
-			div(class='form-group')
-				label(for='trazo1') 
+			div(class='grid-container')
+				div
 					strong TRAZO
+				div
 					input(type='text' name='trazo1' placeholder='OP' id='trazo1' 
 					class='form-control' required='true')
+				div
 					input(type='text' name='t_tr' placeholder='Trazo' id='t_tr' 
 					class='form-control' required='true')
-				input(type='submit' value='trazo' class='btn btn-info')
+				div
+					input(type='submit' value='trazo' class='btn btn-info')
+		div(class='div_grid')
 		form(action='/extendido' method='POST')
-			div(class='form-group')
-				label(for='extendio') 
+			div(class='grid-container')
+				div
 					strong EXTENDIDO
+				div
 					input(type='text' name='extendido' placeholder='OP' id='extendido' 
 					class='form-control' required='true')
+				div
 					input(type='text' name='t_ex' placeholder='Trazo' id='t_ex' 
 					class='form-control' required='true')
-				input(type='submit' value='extendido' class='btn btn-info')
+				div
+					input(type='submit' value='extendido' class='btn btn-info')
+		div(class='div_grid')
 		form(action='/corte' method='POST')
-			div(class='form-group')
-				label(for='corte') 
+			div(class='grid-container')
+				div
 					strong CORTE
+				div
 					input(type='text' name='corte' placeholder='OP' 
-				id='corte' class='form-control' required='true')
+					id='corte' class='form-control' required='true')
+				div
 					input(type='text' name='t_co' placeholder='Trazo' id='t_co' 
-				class='form-control' required='true')
-				input(type='submit' value='Corte' class='btn btn-info')
+					class='form-control' required='true')
+				div
+					input(type='submit' value='Corte' class='btn btn-info')
+		div(class='div_grid')
 		form(action='/tiqueteo' method='POST')
-			div(class='form-group')
-				label(for='tiqueteo') 
+			div(class='grid-container')
+				div
 					strong TIQUETEO
+				div
 					input(type='text' name='tiqueteo' placeholder='OP' 
-				id='tiqueteo' class='form-control' required='true')
+					id='tiqueteo' class='form-control' required='true')
+				div
 					input(type='text' name='t_ti' placeholder='Trazo' id='t_ti' 
-				class='form-control' required='true')
-				input(type='submit' value='tiqueteo' class='btn btn-info')
+					class='form-control' required='true')
+				div
+					input(type='submit' value='tiqueteo' class='btn btn-info')
+		div(class='div_grid')
 		form(action='/preparacion' method='POST')
-			div(class='form-group')
-				label(for='preparacion') 
+			div(class='grid-container')
+				div
 					strong PREPARACION
+				div
 					input(type='text' name='preparacion' placeholder='OP' 
-				id='preparacion' class='form-control' required='true')
+					id='preparacion' class='form-control' required='true')
+				div
 					input(type='text' name='t_pr' placeholder='Trazo' id='t_pr' 
-				class='form-control' required='true')
-				input(type='submit' value='Preparacion' class='btn btn-info')
+					class='form-control' required='true')
+				div
+					input(type='submit' value='Preparacion' class='btn btn-info')
+		div(class='div_grid')
 		form(action='/estampado' method='POST')
-			div(class='form-group')
-				label(for='estampado') 
+			div(class='grid-container')
+				div
 					strong ESTAMPADO
+				div
 					input(type='text' name='estampado' placeholder='OP' 
-				id='estampado' class='form-control' required='true')
+					id='estampado' class='form-control' required='true')
+				div
 					input(type='text' name='t_es' placeholder='Trazo' id='t_es' 
-				class='form-control' required='true')
-				input(type='submit' value='estampado' class='btn btn-info')
+					class='form-control' required='true')
+				div
+					input(type='submit' value='estampado' class='btn btn-info')
+		div(class='div_grid')
 		form(action='/entrega' method='POST')
-			div(class='form-group')
-				label(for='entrega') 
+			div(class='grid-container')
+				div
 					strong INTEGRACION
+				div
 					input(type='text' name='entrega' placeholder='OP' 
-				id='entrega' class='form-control' required='true')
+					id='entrega' class='form-control' required='true')
+				div
 					input(type='text' name='t_in' placeholder='Trazo' id='t_in' 
-				class='form-control' required='true')
-				input(type='submit' value='Integracion' class='btn btn-info')
+					class='form-control' required='true')
+				div
+					input(type='submit' value='Integracion' class='btn btn-info')
 							
