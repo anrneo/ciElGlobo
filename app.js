@@ -391,7 +391,7 @@ app.get('/del/:id', (req, res)=>{
 app.post('/users', function(req, res){
 	var cli = req.body.cliente
 		ud = Number(req.body.uds)
-	var cos_clie = {'clientes':['KIDS','ZUMBA','ASICS','DIDETXCO','ZUMA BLUE','ARTURO C',
+	var cos_clie = {'clientes':['KIDS','ZUMBA','ASICS','DIDETEXCO','ZUMA BLUE','ARTURO C',
 								'POLO','LEONISA','BATA','TERRITORIO','CRYSTAL','COLDWATER','OTROS'],
 					'costo':['400','415','550','450','550','540','540','500','540','550','450','550','400']}
 	for(x in cos_clie.clientes){
