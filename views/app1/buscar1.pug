@@ -1,22 +1,22 @@
 extends ../newlayout
 block contenido
-	div(class='col-md-12 container big-top-space')
+	div(id='table')
 		br
 		table
 			tr
-				th OP
-				th TR
-				th REF
-				th UDS
-				th MOD
-				th EST
-				th F_PROGRAM
-				th TRAZO
-				th EXTENDIDO
-				th CORTE
-				th TIQUETEO
-				th ESTAMPADO(1)
-				th PREPARACION
+				th(class='th1') OP
+				th(class='th1') TR
+				th(class='th1') REF
+				th(class='th1') UDS
+				th(class='th1') MOD
+				th(class='th1') CLIENTE
+				th(class='th1') EST
+				th(class='th1') F_PROGRAM
+				th(class='th1') EXTENDIDO
+				th(class='th1') CORTE
+				th(class='th1') TIQUETEO
+				th(class='th1') ESTAMPADO(1)
+				th(class='th1') PREPARACION
 			tr
 			for bus in busq
 				tr
@@ -25,12 +25,27 @@ block contenido
 					th=bus.ref
 					th=bus.uds
 					th=bus.modu 
+					th=bus.cliente
 					th=bus.est
-					th=bus.fecha.toDateString()
-					th=bus.trazo1 
-					th=bus.extendido
-					th=bus.corte
-					th=bus.tiqueteo
-					th=bus.estampado
-					th=bus.preparacion
+					th=bus.fecha.toLocaleString()
+					if bus.extendido==undefined
+						th
+					else
+						th=bus.extendido.toLocaleString()
+					if bus.corte==undefined
+						th
+					else
+						th=bus.corte.toLocaleString()
+					if bus.tiqueteo==undefined
+						th
+					else
+						th=bus.tiqueteo.toLocaleString()
+					if bus.estampacion==undefined
+						th
+					else
+						th=bus.estampacion.toLocaleString()
+					if bus.preparacion==undefined
+						th
+					else
+						th=bus.preparacion.toLocaleString()
 				tr

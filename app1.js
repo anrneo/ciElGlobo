@@ -33,7 +33,7 @@ app.get('/', function(req, res){
 	})
 })
 app.get('/m3', function(req, res){
-	Corte.find({'modu':3,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+	Corte.find({modu:3,preparacion:undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:3}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
@@ -45,17 +45,19 @@ app.get('/m3', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-	   			res.render('app1/m3',{m1,pro,cor,tot})
+				var tit = 'MODULO 3'
+	   			res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
+
 app.get('/m4', function(req, res){
-	Corte.find({'modu':4,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+	Corte.find({'modu':4,preparacion:undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:4}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
-			if (pr==0){var pro=0}
+			if (pr==0){var pro =0}
 			else{var pro=pr[0].suma}
 			Corte.aggregate([{$match:{preparacion:undefined, modu:4}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
@@ -63,17 +65,19 @@ app.get('/m4', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-	   			res.render('app1/m4',{m1,pro,cor,tot})
+				var tit = 'MODULO 4'
+				res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
+
 app.get('/m7', function(req, res){
 	Corte.find({'modu':7,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:7}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
-			if (pr==0){var pro=0}
+			if (pr==0){var pro =0}
 			else{var pro=pr[0].suma}
 			Corte.aggregate([{$match:{preparacion:undefined, modu:7}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
@@ -81,17 +85,19 @@ app.get('/m7', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-			   res.render('app1/m7',{m1,pro,cor,tot})
+				var tit = 'MODULO 7'
+				res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
+
 app.get('/m10', function(req, res){
 	Corte.find({'modu':10,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:10}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
-			if (pr==0){var pro=0}
+			if (pr==0){var pro =0}
 			else{var pro=pr[0].suma}
 			Corte.aggregate([{$match:{preparacion:undefined, modu:10}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
@@ -99,17 +105,19 @@ app.get('/m10', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-				res.render('app1/m10',{m1,pro,cor,tot})
+				var tit = 'MODULO 10'
+				res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
-		})
+	})
 })
+
 app.get('/m11', function(req, res){
 	Corte.find({'modu':11,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:11}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
-			if (pr==0){var pro=0}
+			if (pr==0){var pro =0}
 			else{var pro=pr[0].suma}
 			Corte.aggregate([{$match:{preparacion:undefined, modu:11}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
@@ -117,17 +125,19 @@ app.get('/m11', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-				res.render('app1/m11',{m1,pro,cor,tot})
+				var tit = 'MODULO 11'
+				 res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
-		})
+	})
 })
+
 app.get('/m13', function(req, res){
 	Corte.find({'modu':13,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:13}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
-			if (pr==0){var pro=0}
+			if (pr==0){var pro =0}
 			else{var pro=pr[0].suma}
 			Corte.aggregate([{$match:{preparacion:undefined, modu:13}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
@@ -135,7 +145,8 @@ app.get('/m13', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-				res.render('app1/m13',{m1,pro,cor,tot})
+				var tit = 'MODULO 13'
+				res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
 	})
@@ -154,11 +165,13 @@ app.get('/est', function(req, res){
 				if(to==0){var tot=0}
 				else{var tot=to[0].suma}
 				var cor=tot-pro
-				res.render('app1/est1',{m1,pro,cor,tot})
+				var tit = 'ESTAMPADOS EN CORTE'
+				res.render('app1/modu1',{m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
+
 
 
 app.post('/buscar', function(req, res){
