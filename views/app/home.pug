@@ -15,7 +15,9 @@ block contenido
         th(class='th1') EXTENDIDO
         th(class='th1') CORTE
         th(class='th1') TIQUETEO
-        th(class='th1') ESTAMPACION
+        th(class='tooltip' id='th1') ESTAMPACION
+          span(class='tooltiptext') verde ok
+          span(class='tooltiptext1') rojo no ok
       tr
         for dato in datos
           tr
