@@ -204,6 +204,30 @@ app.get('/codesapp', function(req, res){
 		res.render('codesapp')
 })
 
+app.get('/modus', function(req, res){
+	res.render('app/modus')
+})
+
+app.get('/mod3', function(req, res){
+	Corte.find({modu:3,preparacion:undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:3}},
+		{$group:{_id:0, suma:{$sum:'$uds'}}}])
+		.then(function(pr){
+			if (pr==0){var pro=0}
+			else{var pro=pr[0].suma}
+			Corte.aggregate([{$match:{preparacion:undefined, modu:3}},
+			{$group:{_id:0, suma:{$sum:'$uds' } }}])
+			.then(function(to){
+				if(to==0){var tot=0}
+				else{var tot=to[0].suma}
+				var cor=tot-pro
+				var tit = 'MODULO 3'
+	   			res.send({m1,pro,cor,tot,tit})
+			})
+		})
+	})
+})
+
 app.get('/m3', function(req, res){
 	Corte.find({modu:3,preparacion:undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:3}},

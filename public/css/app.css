@@ -96,7 +96,7 @@ h4 {
 }
 .div_grid{
   padding: 2px 0;
-  }
+}
 
 .grid-container {
   display: grid;
@@ -123,11 +123,11 @@ h4 {
     font-size: 22px
 
 }
-  body {
+body {
     margin: 0; 
     font-family: arial, sans-serif;
  
-  }
+}
 input[type=date],[type=text],select {
   width: 100%;
   padding: 12px 20px;
@@ -155,6 +155,12 @@ input[type=submit]:hover {
 }
 #table{
   width: 99%;
+  margin: auto;
+  margin-top: 1.5em
+
+}
+#botonmod{
+  width: 70%;
   margin: auto;
   margin-top: 1.5em
 
@@ -205,6 +211,7 @@ input[type=submit]:hover {
     text-align: right;
     background-color: blueviolet
 }
+/*tooltip de estampacion en home*/
 .tooltip {
   width: 100%;
   position: relative;
@@ -275,4 +282,69 @@ input[type=submit]:hover {
 .tooltip:hover .tooltiptext1 {
   visibility: visible;
   opacity: 1;
+}
+
+/*botones de los modulos*/
+.btn {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Green */
+.success {
+  border-color: #4CAF50;
+  color: green;
+}
+
+.success:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Blue */
+.info {
+  border-color: #2196F3;
+  color: dodgerblue
+}
+
+.info:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.warning {
+  border-color: #ff9800;
+  color: orange;
+}
+
+.warning:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.danger {
+  border-color: #f44336;
+  color: red
+}
+
+.danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Gray */
+.default {
+  border-color: #e7e7e7;
+  color: black;
+}
+
+.default:hover {
+  background: #e7e7e7;
 }
