@@ -3,22 +3,21 @@ mongoose.connect('mongodb://localhost/globo')
 var Schema = mongoose.Schema
 
 var user_schema = new Schema({
-  op: {type:String},
-  trazo: {type:String},
+  op: {type:Number},
+  trazo: {type:Number},
   ref: {type:String},
+  cliente: {type:String},
   uds: {type:Number},
   modu: {type:Number},
   est:{type:Number},
   fecha: {type: Date },
-  fecha1:{type:Number},
-  trazo1:{type:String},
-  extendido: {type: String},
-  corte: {type:String},
-  tiqueteo: {type:String},
-  preparacion: {type:String},
-  entregado: {type:String},
-  estampado:{type:String},
-  date: {type:Date, default: Date.now}
+  extendido: {type: Date},
+  corte: {type:Date},
+  tiqueteo: {type:Date},
+  preparacion: {type:Date},
+  estampado:{type:Date},
+  factu:{type:Number},
+  id_pre:{type:Number}
 })
 
 var Corte = mongoose.model('Corte', user_schema)

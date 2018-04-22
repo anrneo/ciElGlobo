@@ -11,16 +11,16 @@ app.use(bodyParser.json()) //para peticiones application json
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 
-app.set('view engine', 'jade')
+app.set('view engine', 'pug')
 
 app.get('/', function(req, res){
-	Corte.find({entregado: undefined}).sort({extendido:-1}).then(function(datos){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined}},
+	Corte.find({preparacion: undefined}).sort({extendido:-1}).then(function(datos){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined}},
+			Corte.aggregate([{$match:{preparacion:undefined}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -33,13 +33,13 @@ app.get('/', function(req, res){
 	})
 })
 app.get('/m3', function(req, res){
-	Corte.find({'modu':3,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:3}},
+	Corte.find({'modu':3,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:3}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined, modu:3}},
+			Corte.aggregate([{$match:{preparacion:undefined, modu:3}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -51,13 +51,13 @@ app.get('/m3', function(req, res){
 	})
 })
 app.get('/m4', function(req, res){
-	Corte.find({'modu':4,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:4}},
+	Corte.find({'modu':4,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:4}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined, modu:4}},
+			Corte.aggregate([{$match:{preparacion:undefined, modu:4}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -69,13 +69,13 @@ app.get('/m4', function(req, res){
 	})
 })
 app.get('/m7', function(req, res){
-	Corte.find({'modu':7,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:7}},
+	Corte.find({'modu':7,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:7}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined, modu:7}},
+			Corte.aggregate([{$match:{preparacion:undefined, modu:7}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -87,13 +87,13 @@ app.get('/m7', function(req, res){
 	})
 })
 app.get('/m10', function(req, res){
-	Corte.find({'modu':10,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:10}},
+	Corte.find({'modu':10,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:10}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined, modu:10}},
+			Corte.aggregate([{$match:{preparacion:undefined, modu:10}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -105,13 +105,13 @@ app.get('/m10', function(req, res){
 		})
 })
 app.get('/m11', function(req, res){
-	Corte.find({'modu':11,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:11}},
+	Corte.find({'modu':11,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:11}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined, modu:11}},
+			Corte.aggregate([{$match:{preparacion:undefined, modu:11}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -123,13 +123,13 @@ app.get('/m11', function(req, res){
 		})
 })
 app.get('/m13', function(req, res){
-	Corte.find({'modu':13,'entregado':undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{entregado:undefined, extendido:undefined, modu:13}},
+	Corte.find({'modu':13,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
+		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:13}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
 		.then(function(pr){
 			if (pr==0){var pro=0}
 			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{entregado:undefined, modu:13}},
+			Corte.aggregate([{$match:{preparacion:undefined, modu:13}},
 			{$group:{_id:0, suma:{$sum:'$uds' } }}])
 			.then(function(to){
 				if(to==0){var tot=0}
@@ -168,7 +168,9 @@ app.post('/buscar', function(req, res){
 		res.render('app1/buscar1',{busq:busq})
 	})
 })
-
+app.get('/codesapp', function(req, res){
+	res.render('codesapp1')
+})
 
 server.listen(9019)
 console.log('conectado en servidor 9019')
