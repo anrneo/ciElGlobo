@@ -1,44 +1,31 @@
 extends ../newlayout
 block contenido
-  h2(class='text-align-center') #{tit}
-  h2(class='text-align-center') Uds programadas: #{pro}   --- Uds en corte: #{cor}  --- Uds totales: #{tot}   
-  div(id='table')
-    h3  
-    table
-        tr
-          th(class='th1') OP
-          th(class='th1') TR
-          th(class='th1') CLIENTE
-          th(class='th1') REF
-          th(class='th1') UDS
-          th(class='th1') MOD
-          th(class='th1') F_PROGRA   
-          th(class='th1') EXTENDIDO
-          th(class='th1') CORTE
-          th(class='th1') TIQUETEO
-        tr
-        for dato in m1
-          tr
-            if dato.extendido == undefined
-              th=dato.op
-            else
-              th(class='th')=dato.op
-            th=dato.trazo
-            th=dato.cliente
-            th=dato.ref
-            th=dato.uds
-            th=dato.modu
-            th=dato.fecha.toDateString()
-            if dato.extendido==undefined
-              th
-            else
-              th=dato.extendido.toLocaleString()
-            if dato.corte==undefined
-              th
-            else
-              th=dato.corte.toLocaleString()
-            if dato.tiqueteo==undefined
-              th
-            else
-              th=dato.tiqueteo.toLocaleString()
-          tr
+    div(id='botonmod')
+        button(class="btn success" id='mod3') Modulo 3
+        button(class="btn info" id='mod4') Modulo 4
+        button(class="btn warning" id='mod7') Modulo 7
+        button(class="btn danger" id='mod10') Modulo 10
+        button(class="btn default" id='mod11') Modulo 11  
+        button(class="btn snpedro" id='mod13') San Pedro
+        button(class="btn est" id='est') Estampados
+    h2(class='text-align-center' id='tit')
+    h2(class='text-align-center' id='uds')   
+    div(id='table')
+        table
+            thead
+                tr
+                    th(class='th1') OP
+                    th(class='th1') TR
+                    th(class='th1') CLIENTE
+                    th(class='th1') REF
+                    th(class='th1') UDS
+                    th(class='th1') MOD
+                    th(class='th1') F_PROGRA   
+                    th(class='th1') EXTENDIDO
+                    th(class='th1') CORTE
+                    th(class='th1') TIQUETEO
+                tr
+            tbody
+    script
+        include ../scripts/jquery-3.3.1.min.js
+        include ../scripts/modus.js

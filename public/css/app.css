@@ -102,7 +102,7 @@ h4 {
   display: grid;
   grid-template-columns: 20% 30% 30% 20%;
   grid-gap: 10px;
-  background-color: #4CAF50 !important;
+  background-color: rgb(132, 221, 132);
   padding: 10px;
   text-align: center;
   font-size: 23px;
@@ -160,7 +160,7 @@ input[type=submit]:hover {
 
 }
 #botonmod{
-  width: 70%;
+  width: 80%;
   margin: auto;
   margin-top: 1.5em
 
@@ -347,4 +347,24 @@ input[type=submit]:hover {
 
 .default:hover {
   background: #e7e7e7;
+}
+/* san pedro */
+.snpedro {
+  border-color: #5052f1;
+  color: rgba(19, 14, 14, 0.788)
+}
+
+.snpedro:hover {
+  background: #677cd6;
+  color: white
+}
+/* est */
+.est {
+  border-color: dodgerblue;
+  color: blue
+}
+
+.est:hover {
+  background: dodgerblue;
+  color: white
 }

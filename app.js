@@ -27,6 +27,7 @@ app.set('view engine', 'pug')
 	//Corte.update({_id:l[2]._id},{$set:{preparacion:'2018-04-14'}}).then((i)=>{console.log(i)})
 	res.render('codesapp')		
 })*/
+
 app.get('/', function(req, res){
 	Corte.find({preparacion:undefined}).sort({extendido:1}).then(function(datos){
 	Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined}},
@@ -228,27 +229,7 @@ app.get('/mod3', function(req, res){
 	})
 })
 
-app.get('/m3', function(req, res){
-	Corte.find({modu:3,preparacion:undefined}).sort({extendido:-1}).then(function(m1){
-		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:3}},
-		{$group:{_id:0, suma:{$sum:'$uds'}}}])
-		.then(function(pr){
-			if (pr==0){var pro=0}
-			else{var pro=pr[0].suma}
-			Corte.aggregate([{$match:{preparacion:undefined, modu:3}},
-			{$group:{_id:0, suma:{$sum:'$uds' } }}])
-			.then(function(to){
-				if(to==0){var tot=0}
-				else{var tot=to[0].suma}
-				var cor=tot-pro
-				var tit = 'MODULO 3'
-	   			res.render('app/modu',{m1,pro,cor,tot,tit})
-			})
-		})
-	})
-})
-
-app.get('/m4', function(req, res){
+app.get('/mod4', function(req, res){
 	Corte.find({'modu':4,preparacion:undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:4}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
@@ -262,13 +243,13 @@ app.get('/m4', function(req, res){
 				else{var tot=to[0].suma}
 				var cor=tot-pro
 				var tit = 'MODULO 4'
-				res.render('app/modu',{m1,pro,cor,tot,tit})
+				res.send({m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
 
-app.get('/m7', function(req, res){
+app.get('/mod7', function(req, res){
 	Corte.find({'modu':7,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:7}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
@@ -282,13 +263,13 @@ app.get('/m7', function(req, res){
 				else{var tot=to[0].suma}
 				var cor=tot-pro
 				var tit = 'MODULO 7'
-				res.render('app/modu',{m1,pro,cor,tot,tit})
+				res.send({m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
 
-app.get('/m10', function(req, res){
+app.get('/mod10', function(req, res){
 	Corte.find({'modu':10,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:10}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
@@ -302,13 +283,13 @@ app.get('/m10', function(req, res){
 				else{var tot=to[0].suma}
 				var cor=tot-pro
 				var tit = 'MODULO 10'
-				res.render('app/modu',{m1,pro,cor,tot,tit})
+				res.send({m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
 
-app.get('/m11', function(req, res){
+app.get('/mod11', function(req, res){
 	Corte.find({'modu':11,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:11}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
@@ -322,13 +303,13 @@ app.get('/m11', function(req, res){
 				else{var tot=to[0].suma}
 				var cor=tot-pro
 				var tit = 'MODULO 11'
-				 res.render('app/modu',{m1,pro,cor,tot,tit})
+				 res.send({m1,pro,cor,tot,tit})
 			})
 		})
 	})
 })
 
-app.get('/m13', function(req, res){
+app.get('/mod13', function(req, res){
 	Corte.find({'modu':13,'preparacion':undefined}).sort({extendido:-1}).then(function(m1){
 		Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined, modu:13}},
 		{$group:{_id:0, suma:{$sum:'$uds'}}}])
@@ -342,7 +323,7 @@ app.get('/m13', function(req, res){
 				else{var tot=to[0].suma}
 				var cor=tot-pro
 				var tit = 'MODULO 13'
-				res.render('app/modu',{m1,pro,cor,tot,tit})
+				res.send({m1,pro,cor,tot,tit})
 			})
 		})
 	})
@@ -362,7 +343,7 @@ app.get('/est', function(req, res){
 				else{var tot=to[0].suma}
 				var cor=tot-pro
 				var tit = 'ESTAMPADOS EN CORTE'
-				res.render('app/modu',{m1,pro,cor,tot,tit})
+				res.send({m1,pro,cor,tot,tit})
 			})
 		})
 	})
