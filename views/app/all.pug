@@ -17,6 +17,9 @@ block contenido
 				th(class='th1') TIQUETEO
 				th(class='th1') ESTAMPADO(1)
 				th(class='th1') PREPARACION
+				th(class='th1') FACTU
+				th(class='th1') ID_PRE
+
 			tr
 			for bus in busq
 				tr
@@ -48,4 +51,8 @@ block contenido
 						th
 					else
 						th=bus.preparacion.toLocaleString()
+					th=bus.factu
+					th=bus.id_pre
+
 				tr
+	

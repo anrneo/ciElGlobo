@@ -36,6 +36,9 @@ $(document).ready(function(){
             contentType: 'application/json',
             data: JSON.stringify({fechai: fecha_i.val(),fechaf: fecha_f.val()}),
             success:function(response){
+                for(i in response.matriz){var f = new Date(response.matriz[i].dia)
+                    response.matriz[i].dia=f.toLocaleDateString()
+                }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.matriz.forEach(function(product) {

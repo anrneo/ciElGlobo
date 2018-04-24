@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var Corte = require('./models/user')
 var Imagen = require('./models/imagenes')
-var Matriz = require('./models/Matriz')
+var Matriz = require('./models/matriz')
 var methodOverride = require('method-override')
 var http = require('http')
 var fs = require('fs')
@@ -173,8 +173,11 @@ app.post('/extras', function(req,res){
 		hrs_ex = x+y+z+w
 		cos_ex = x*5649+y*7910+z*7910+w*9491
 		cos_mo = p*48190+cos_ex
+	var	f = new Date(req.body.dia)
+	var	fe = f.getTime()
+	var	fec = new Date(fe+1000*3600*6)
 	var matriz=new Matriz({
-		dia: req.body.dia,
+		dia: fec,
 		ex_dia: req.body.ex_dia,
 		ex_noche: req.body.ex_noche,
 		ex_dom: req.body.ex_dom,
@@ -357,6 +360,18 @@ app.post('/buscar', function(req, res){
 	})
 })
 
+app.get('/all', function(req, res){
+	Corte.find({}).sort({fecha:-1})
+	.exec((err,busq)=>{
+		Matriz.find().then((mat)=>{
+
+		res.render('app/all',{busq,mat})
+	})
+})
+})
+
+
+
 app.get('/borrar', function(req,res){
 	res.render('app/borrar')
 })
@@ -403,6 +418,8 @@ app.post('/users', function(req, res){
 		if(cos_clie.clientes[x]==cli){var cos = Number(cos_clie.costo[x])}
 	}
 	var f = new Date(req.body.fecha)
+	var fe = f.getTime()
+	var fec = new Date(fe+1000*3600*6)
 	var fac = cos*ud
 				var corte=new Corte({op: req.body.op,
 						trazo: req.body.trazo,
@@ -411,7 +428,7 @@ app.post('/users', function(req, res){
 						uds: req.body.uds,
 						modu: req.body.modu,
 						est: req.body.est,
-						fecha: f,
+						fecha: fec,
 						factu: fac
 						})
 	corte.save().then(function(us){
@@ -455,6 +472,8 @@ app.post('/tiqueteo', function(req, res){
 app.post('/preparacion', function(req, res){
 	var f = new Date()
 	var me = f.getUTCFullYear().toString()+f.getUTCMonth().toString()+f.getUTCDate().toString()
+	var fe = f.getUTCSeconds()
+	console.log(fe);
 	
 	Corte.findOneAndUpdate({ op:req.body.preparacion, trazo:req.body.t_pr }, 
 		{ $set: { preparacion: f, id_pre:me}}).exec(function(err,ok){

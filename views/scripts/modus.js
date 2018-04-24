@@ -5,18 +5,18 @@ $(document).ready(function(){
             url:'/mod3',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
-                    if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
-                    if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
-                    if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
-                    }
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                    response.m1[i].fecha=f.toLocaleDateString()
+                        if(response.m1[i].extendido==undefined){var j = ''
+                        response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                            response.m1[i].extendido=f.toLocaleString()}
+                        if(response.m1[i].corte==undefined){var j = ''
+                            response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                                response.m1[i].corte=f.toLocaleString()}
+                        if(response.m1[i].tiqueteo==undefined){var j = ''
+                                response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                    response.m1[i].tiqueteo=f.toLocaleString()}
+                        }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.m1.forEach(function(product) {
@@ -49,18 +49,18 @@ $(document).ready(function(){
             url:'/mod4',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
-                    if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
-                    if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
-                    if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
-                    }
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                    response.m1[i].fecha=f.toLocaleDateString()
+                        if(response.m1[i].extendido==undefined){var j = ''
+                        response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                            response.m1[i].extendido=f.toLocaleString()}
+                        if(response.m1[i].corte==undefined){var j = ''
+                            response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                                response.m1[i].corte=f.toLocaleString()}
+                        if(response.m1[i].tiqueteo==undefined){var j = ''
+                                response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                    response.m1[i].tiqueteo=f.toLocaleString()}
+                        }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.m1.forEach(function(product) {
@@ -93,18 +93,18 @@ $(document).ready(function(){
             url:'/mod7',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
-                    if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
-                    if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
-                    if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
-                    }
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                    response.m1[i].fecha=f.toLocaleDateString()
+                        if(response.m1[i].extendido==undefined){var j = ''
+                        response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                            response.m1[i].extendido=f.toLocaleString()}
+                        if(response.m1[i].corte==undefined){var j = ''
+                            response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                                response.m1[i].corte=f.toLocaleString()}
+                        if(response.m1[i].tiqueteo==undefined){var j = ''
+                                response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                    response.m1[i].tiqueteo=f.toLocaleString()}
+                        }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.m1.forEach(function(product) {
@@ -136,18 +136,18 @@ $(document).ready(function(){
             url:'/mod10',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
-                    if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
-                    if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
-                    if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
-                    }
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                    response.m1[i].fecha=f.toLocaleDateString()
+                        if(response.m1[i].extendido==undefined){var j = ''
+                        response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                            response.m1[i].extendido=f.toLocaleString()}
+                        if(response.m1[i].corte==undefined){var j = ''
+                            response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                                response.m1[i].corte=f.toLocaleString()}
+                        if(response.m1[i].tiqueteo==undefined){var j = ''
+                                response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                    response.m1[i].tiqueteo=f.toLocaleString()}
+                        }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.m1.forEach(function(product) {
@@ -179,18 +179,18 @@ $(document).ready(function(){
             url:'/mod11',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
-                    if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
-                    if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
-                    if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
-                    }
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                    response.m1[i].fecha=f.toLocaleDateString()
+                        if(response.m1[i].extendido==undefined){var j = ''
+                        response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                            response.m1[i].extendido=f.toLocaleString()}
+                        if(response.m1[i].corte==undefined){var j = ''
+                            response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                                response.m1[i].corte=f.toLocaleString()}
+                        if(response.m1[i].tiqueteo==undefined){var j = ''
+                                response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                    response.m1[i].tiqueteo=f.toLocaleString()}
+                        }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.m1.forEach(function(product) {
@@ -223,18 +223,18 @@ $(document).ready(function(){
             url:'/mod13',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
-                    if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
-                    if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
-                    if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
-                    }
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                    response.m1[i].fecha=f.toLocaleDateString()
+                        if(response.m1[i].extendido==undefined){var j = ''
+                        response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                            response.m1[i].extendido=f.toLocaleString()}
+                        if(response.m1[i].corte==undefined){var j = ''
+                            response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                                response.m1[i].corte=f.toLocaleString()}
+                        if(response.m1[i].tiqueteo==undefined){var j = ''
+                                response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                    response.m1[i].tiqueteo=f.toLocaleString()}
+                        }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
                 response.m1.forEach(function(product) {
@@ -266,17 +266,17 @@ $(document).ready(function(){
             url:'/est',
             contentType: 'application/json',
             success:function(response){
-                for(i in response.m1){var j = response.m1[i].fecha.slice(0,10)
-                response.m1[i].fecha=j
+                for(i in response.m1){var f = new Date(response.m1[i].fecha)
+                response.m1[i].fecha=f.toLocaleDateString()
                     if(response.m1[i].extendido==undefined){var j = ''
-                    response.m1[i].extendido=j}else{var j = response.m1[i].extendido.slice(0,10)
-                        response.m1[i].extendido=j}
+                    response.m1[i].extendido=j}else{var f = new Date(response.m1[i].extendido)
+                        response.m1[i].extendido=f.toLocaleString()}
                     if(response.m1[i].corte==undefined){var j = ''
-                        response.m1[i].corte=j}else{var j = response.m1[i].corte.slice(0,10)
-                            response.m1[i].corte=j}
+                        response.m1[i].corte=j}else{var f = new Date(response.m1[i].corte)
+                            response.m1[i].corte=f.toLocaleString()}
                     if(response.m1[i].tiqueteo==undefined){var j = ''
-                            response.m1[i].tiqueteo=j}else{var j = response.m1[i].tiqueteo.slice(0,10)
-                                response.m1[i].tiqueteo=j}
+                            response.m1[i].tiqueteo=j}else{var f = new Date(response.m1[i].tiqueteo)
+                                response.m1[i].tiqueteo=f.toLocaleString()}
                     }
                 var tbodyEl = $('tbody')
                 tbodyEl.html('')  
