@@ -160,9 +160,18 @@ app.get('/horas', function(req, res){
 })
 
 app.post('/extras', function(req,res){
-	Matriz.find({dia:req.body.dia}).then((ok)=>{
+	var	f = new Date(req.body.dia)
+		fe = f.getTime()
+		fec = new Date(fe+1000*3600*6)
+		dbus=new Date(fe+1000*3600*6)
+		console.log(dbus);
+		
+Matriz.find({dia:dbus}).then((ok)=>{
+	console.log(ok);
+
 		for(i in ok){
-			Matriz.remove({dia:ok[i].dia}).then(()=>{})
+			
+			Matriz.remove({dia:dbus}).then(()=>{})
 			}
 		
 	var x = Number(req.body.ex_dia)
@@ -173,9 +182,6 @@ app.post('/extras', function(req,res){
 		hrs_ex = x+y+z+w
 		cos_ex = x*5649+y*7910+z*7910+w*9491
 		cos_mo = p*48190+cos_ex
-	var	f = new Date(req.body.dia)
-	var	fe = f.getTime()
-	var	fec = new Date(fe+1000*3600*6)
 	var matriz=new Matriz({
 		dia: fec,
 		ex_dia: req.body.ex_dia,
