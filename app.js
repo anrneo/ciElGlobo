@@ -164,10 +164,8 @@ app.post('/extras', function(req,res){
 		fe = f.getTime()
 		fec = new Date(fe+1000*3600*6)
 		dbus=new Date(fe+1000*3600*6)
-		console.log(dbus);
 		
 Matriz.find({dia:dbus}).then((ok)=>{
-	console.log(ok);
 
 		for(i in ok){
 			
@@ -479,7 +477,6 @@ app.post('/preparacion', function(req, res){
 	var f = new Date()
 	var me = f.getUTCFullYear().toString()+f.getUTCMonth().toString()+f.getUTCDate().toString()
 	var fe = f.getUTCSeconds()
-	console.log(fe);
 	
 	Corte.findOneAndUpdate({ op:req.body.preparacion, trazo:req.body.t_pr }, 
 		{ $set: { preparacion: f, id_pre:me}}).exec(function(err,ok){
