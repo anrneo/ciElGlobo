@@ -53,8 +53,14 @@ app.get('/matriz', function(req, res){
 })
 
 app.post('/dat_matriz', function(req, res){
-	var x =new Date(req.body.fechai)
-	var y =new Date(req.body.fechaf)
+	var	f = new Date(req.body.fechai)
+		fe = f.getTime()
+		x = new Date(fe+1000*3600*6)
+	var	f = new Date(req.body.fechaf)
+		fe = f.getTime()
+		y = new Date(fe+1000*3600*6)
+	//var x =new Date(req.body.fechai)
+	//var y =new Date(req.body.fechaf)
 	Matriz.find({}).then(function(dat){
 		Corte.aggregate([{$match:{preparacion:{$exists:true}}},
 		{$group:{_id:"$id_pre", suma:{$sum:'$factu'}, sum_uds:{$sum:'$uds'}}}]).then(function(to){
@@ -474,10 +480,11 @@ app.post('/tiqueteo', function(req, res){
 })
 
 app.post('/preparacion', function(req, res){
+
 	var f = new Date()
-	var me = f.getUTCFullYear().toString()+f.getUTCMonth().toString()+f.getUTCDate().toString()
-	var fe = f.getUTCSeconds()
-	
+	var fe = f.getTime()
+	var fec = new Date(fe-1000*3600*5)
+	var me = fec.getUTCFullYear().toString()+fec.getUTCMonth().toString()+fec.getUTCDate().toString()
 	Corte.findOneAndUpdate({ op:req.body.preparacion, trazo:req.body.t_pr }, 
 		{ $set: { preparacion: f, id_pre:me}}).exec(function(err,ok){
 			if(ok==null){

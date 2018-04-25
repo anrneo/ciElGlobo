@@ -221,7 +221,7 @@ input[type=submit]:hover {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 50px;
+  width: 100px;
   background-color: #4CAF50;
   color: #fff;
   text-align: center;
@@ -230,7 +230,7 @@ input[type=submit]:hover {
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: 50%;
+  left: 10%;
   margin-left: 0px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -253,7 +253,7 @@ input[type=submit]:hover {
 }
 .tooltip .tooltiptext1 {
   visibility: hidden;
-  width: 50px;
+  width: 100px;
   background-color: rgb(230, 17, 17);
   color: #fff;
   text-align: center;
@@ -262,7 +262,7 @@ input[type=submit]:hover {
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: 50%;
+  left: 80%;
   margin-left: -80px;
   opacity: 0;
   transition: opacity 0.3s;
