@@ -8,22 +8,26 @@
   color: white
 }
 .img-container{
-  width: 100%;
-  max-width: 100%;
-  margin: auto auto
+  width: 70%;
+  margin: auto
+}
+.codesApp{
+  width: auto;
+  padding: 10px;
+  border-radius: 1%;
+  border: 10px solid dodgerblue;
+    margin: 10px;
 }
 .img-container h1,.img-container h2{
   padding: 15px;
   border-bottom: 1px solid #222
 }
 .img-container p{
-  text-align: right;
+  text-align: center;
   font-size: 1.2em;
   margin-top: 1em
 }
-img{
-  max-width: auto
-}
+
 nav li{
   display: inline-block;
   margin-right: .5em;
@@ -230,7 +234,7 @@ input[type=submit]:hover {
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: 10%;
+  left: 3%;
   margin-left: 0px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -262,7 +266,7 @@ input[type=submit]:hover {
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: 80%;
+  left: 85%;
   margin-left: -80px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -272,7 +276,7 @@ input[type=submit]:hover {
   content: "";
   position: absolute;
   top: 100%;
-  left: 80%;
+  left: 60%;
   margin-left: -15px;
   border-width: 5px;
   border-style: solid;

@@ -363,10 +363,11 @@ app.get('/est', function(req, res){
 })
 
 app.post('/buscar', function(req, res){
+		
 	Corte.find({'op':req.body.buscar}).sort({fecha:-1})
 	.exec((err,busq)=>{
 		if(err) console.log(err);
-		res.render('app/buscar',{busq:busq})
+		res.render('app/buscar',{busq})
 	})
 })
 
