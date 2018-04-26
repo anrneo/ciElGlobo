@@ -9,7 +9,8 @@
 }
 .img-container{
   width: 70%;
-  margin: auto
+  margin: auto;
+  display: none
 }
 .codesApp{
   width: auto;
