@@ -481,18 +481,19 @@ app.post('/tiqueteo', function(req, res){
 })
 
 app.post('/preparacion', function(req, res){
-
 	var f = new Date()
 	var fe = f.getTime()
 	var fec = new Date(fe-1000*3600*5)
 	var me = fec.getUTCFullYear().toString()+fec.getUTCMonth().toString()+fec.getUTCDate().toString()
-	Corte.findOneAndUpdate({ op:req.body.preparacion, trazo:req.body.t_pr }, 
-		{ $set: { preparacion: f, id_pre:me}}).exec(function(err,ok){
-			if(ok==null){
-				res.render('app/info',{nom:'Preparador'})}
-			else{
-				res.render('new')}
-		})
+	Corte.findOne({op:req.body.preparacion, trazo:req.body.t_pr}).exec((err,ok)=>{
+		if(ok==null){
+			res.render('app/info',{nom:'Preparador'})
+		}else if(ok.preparacion!==undefined){
+			res.render('new',{data:'not'})	
+		}else(Corte.findByIdAndUpdate({_id:ok._id},{$set: {preparacion:f, id_pre:me}}).then((us)=>{
+			res.render('new')
+		}))
+	})
 })
 
 app.post('/estampado', function(req, res){
@@ -500,7 +501,7 @@ app.post('/estampado', function(req, res){
 	Corte.findOneAndUpdate({ op:req.body.estampado, trazo:req.body.t_es }, 
 		{ $set: { estampado: f }}).exec(function(err,ok){
 			if(ok==null){
-				res.render('app/info',{nom:'Integrador'})}
+				res.render('app/info',{nom:'Loteador'})}
 			else{
 				res.render('new')}
 		})
