@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var Corte = require('./models/user')
 var Imagen = require('./models/imagenes')
 var Matriz = require('./models/matriz')
+var Bio = require('./models/biom')
 var methodOverride = require('method-override')
 var http = require('http')
 var fs = require('fs')
@@ -46,6 +47,67 @@ app.get('/', function(req, res){
 			})
 		})
 	})
+})
+
+app.get('/bio', function(req, res){
+	res.render('app/bio')
+})
+
+app.get('/borrar_bio', function(req, res){
+	Bio.find().then((ok)=>{
+		for(i in ok){
+			Bio.update({operario:ok[i].operario},{$set:{valor1:0, valor2:0, valor3:0, valor4:0}}).then(()=>{})
+		}
+		Bio.find().then((dat)=>{
+			res.send({dat})
+		})
+	})
+})
+
+app.post('/dat_bio', (req,res)=>{
+	var valor=req.body.valor/(50000/4)*100
+		/*if(req.body.etapa==1){
+			var bio = new Bio({
+				operario:req.body.operario,
+				})
+				bio.save().then((ok)=>{
+					console.log(ok);
+					
+				})
+			}*/
+			if(req.body.etapa==1){
+				Bio.update({operario:req.body.operario},
+					{$set:{valor1: valor.toFixed(2), valor2:0, valor3:0, valor4:0}}).then((ok)=>{
+						Bio.find().then((dat)=>{
+							res.send({dat})
+						})								
+					})
+				}
+			if(req.body.etapa==2){
+				Bio.update({operario:req.body.operario},
+					{$set:{valor2: valor.toFixed(2), valor3:0, valor4:0}}).then((ok)=>{
+						Bio.find().then((dat)=>{
+							res.send({dat})
+						})								
+					})
+				}
+				if(req.body.etapa==3){
+					Bio.update({operario:req.body.operario},
+						{$set:{valor3: valor.toFixed(2), valor4:0}}).then((ok)=>{
+							Bio.find().then((dat)=>{
+								res.send({dat})
+							})								
+						})
+						}
+					if(req.body.etapa==4){
+						Bio.update({operario:req.body.operario},
+							{$set:{valor4: valor.toFixed(2)}}).then((ok)=>{
+								Bio.find().then((dat)=>{
+									res.send({dat})
+								})								
+							})
+						}
+
 })
 
 app.get('/matriz', function(req, res){
