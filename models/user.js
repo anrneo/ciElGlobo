@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/globo')
+var conn = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/globo'
+mongoose.connect(conn)
 var Schema = mongoose.Schema
 
 var user_schema = new Schema({
