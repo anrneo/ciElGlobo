@@ -28,8 +28,8 @@ app.set('view engine', 'pug')
 	//Corte.update({_id:l[2]._id},{$set:{preparacion:'2018-04-14'}}).then((i)=>{console.log(i)})
 	res.render('codesapp')		
 })*/
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 9000
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost'
+var port = process.env.OPENSHIFT_NODEJS_PORT || 9000
+    ip   = process.env.OPENSHIFT_NODEJS_IP || 'localhost'
 
 app.get('/', function(req, res){
 	Corte.find({preparacion:undefined}).sort({extendido:1}).then(function(datos){
