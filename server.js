@@ -32,7 +32,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 9000
     ip   = process.env.OPENSHIFT_NODEJS_IP || 'localhost'
 
 app.get('/', function(req, res){
-	Corte.find({preparacion:undefined}).sort({extendido:1}).then(function(datos){
+	Corte.find({preparacion:undefined}).sort({fecha:1}).then(function(datos){
 	Corte.aggregate([{$match:{preparacion:undefined, extendido:undefined}},
 	{$group:{_id:0, suma:{$sum:'$uds'}}}])
 	.then(function(pr){
