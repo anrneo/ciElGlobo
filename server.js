@@ -464,23 +464,25 @@ app.get('/est', function(req, res){
 })
 
 app.post('/buscar', function(req, res){
+	if(req.body.buscar=='all'){
+			Corte.find({}).sort({fecha:-1})
+			.exec((err,busq)=>{
+				Matriz.find().then((mat)=>{
 		
-	Corte.find({'op':req.body.buscar}).sort({fecha:-1})
+				res.render('app/all',{busq,mat})
+				})
+			})
+		
+	}else{
+		Corte.find({'op':req.body.buscar}).sort({fecha:-1})
 	.exec((err,busq)=>{
 		if(err) console.log(err);
-		res.render('app/buscar',{busq})
-	})
+		res.render('app/all',{busq})
+		})
+	}
+	
 })
 
-app.get('/all', function(req, res){
-	Corte.find({}).sort({fecha:-1})
-	.exec((err,busq)=>{
-		Matriz.find().then((mat)=>{
-
-		res.render('app/all',{busq,mat})
-	})
-})
-})
 
 
 
